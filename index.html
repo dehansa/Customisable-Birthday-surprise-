@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Birthday Surprise</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffd6e7, #e5d8ff);
+    padding: 20px;
+}
+
+.card {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    padding: 40px 30px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+
+.icon {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #4b315c;
+}
+
+p {
+    color: #666;
+    line-height: 1.7;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #754c8f;
+    color: white;
+    font-size: 16px;
+}
+
+.error {
+    color: #d33;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.heart {
+    font-size: 60px;
+    animation: beat 1.2s infinite;
+}
+
+.message {
+    white-space: pre-line;
+}
+
+@keyframes beat {
+    50% {
+        transform: scale(1.2);
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+    <!-- START -->
+
+    <div id="start">
+
+        <div class="icon">✦</div>
+
+        <h1>A Little Surprise...</h1>
+
+        <p>
+            This surprise is for someone special.
+            <br>
+            Enter your name to continue.
+        </p>
+
+        <input
+            id="name"
+            type="text"
+            placeholder="Enter your name"
+        >
+
+        <button onclick="checkName()">
+            Continue
+        </button>
+
+        <div id="error" class="error"></div>
+
+    </div>
+
+
+    <!-- SURPRISE -->
+
+    <div id="surprise" class="hidden">
+
+        <div class="heart">♥</div>
+
+        <h1 id="title"></h1>
+
+        <p id="message" class="message"></p>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/*
+========================================
+CHANGE THESE THREE THINGS
+========================================
+*/
+
+const personName = "Dehansa Hansadi";
+
+const nickname = "Hansi";
+
+const message = `
+Hansi,
+
+අද දවස ඔයාට විශේෂ දවසක්.
+
+ජීවිතේට එන හැම කෙනෙක්ම
+අපේ මතකවල විශේෂ තැනක් ගන්නේ නැහැ.
+
+ඒත් සමහර අය ඉන්නවා,
+එයාලා අපේ මතකවලට
+හරිම ලස්සන තැනක් අරගෙන ඉන්නවා.
+
+ඔයාට ඉස්සරහට එන හැම දවසක්ම
+සතුටින්, ආදරයෙන්,
+ලස්සන මතකවලින් පිරෙන්න කියලා
+මම ප්‍රාර්ථනා කරනවා.
+
+අද දවස ලස්සනට enjoy කරන්න.
+
+Happy Birthday, Hansi.
+`;
+
+
+/*
+========================================
+NAME CHECK
+========================================
+*/
+
+function checkName() {
+
+    const entered =
+        document
+        .getElementById("name")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const correct =
+        personName
+        .trim()
+        .toLowerCase();
+
+    const nick =
+        nickname
+        .trim()
+        .toLowerCase();
+
+
+    if (entered !== correct && entered !== nick) {
+
+        document
+        .getElementById("error")
+        .innerText =
+        "No no... This is not for you.";
+
+        return;
+    }
+
+
+    document
+    .getElementById("start")
+    .classList
+    .add("hidden");
+
+
+    document
+    .getElementById("surprise")
+    .classList
+    .remove("hidden");
+
+
+    document
+    .getElementById("title")
+    .innerText =
+    "This is for you, " + nickname + "!";
+
+
+    document
+    .getElementById("message")
+    .innerText =
+    message;
+}
+
+</script>
+
+</body>
+</html>
