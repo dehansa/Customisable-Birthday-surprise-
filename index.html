@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Birthday Surprise</title>
+<title>My Little Surprise</title>
 
 <style>
 
@@ -17,20 +18,18 @@ body {
     min-height: 100vh;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
+    color: white;
 
     background:
-        radial-gradient(circle at top, #3b235a, #160d24 70%);
-
-    color: white;
+        radial-gradient(circle at top, #3b235a, #160d24 75%);
 }
 
 .card {
     width: calc(100% - 30px);
-    max-width: 520px;
+    max-width: 540px;
 
-    margin: 30px auto;
-
-    padding: 30px;
+    margin: 25px auto;
+    padding: 28px;
 
     border-radius: 28px;
 
@@ -38,10 +37,10 @@ body {
 
     border: 1px solid rgba(255,255,255,0.18);
 
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(16px);
 
     box-shadow:
-        0 25px 80px rgba(0,0,0,0.35);
+        0 25px 80px rgba(0,0,0,0.4);
 
     position: relative;
     z-index: 5;
@@ -49,29 +48,27 @@ body {
 
 h1 {
     text-align: center;
-
     font-size: 32px;
+    margin: 5px 0 12px;
+}
 
-    margin-bottom: 10px;
+h2 {
+    text-align: center;
 }
 
 .subtitle {
     text-align: center;
-
     color: #ddd;
-
     line-height: 1.6;
+    margin-bottom: 25px;
 }
 
 label {
     display: block;
-
-    margin-top: 18px;
+    margin-top: 17px;
     margin-bottom: 7px;
-
-    color: #eee;
-
     font-weight: bold;
+    color: #eee;
 }
 
 input,
@@ -82,23 +79,20 @@ select {
 
     padding: 14px;
 
-    border-radius: 13px;
-
     border: none;
-
     outline: none;
+
+    border-radius: 13px;
 
     font-size: 16px;
 
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.96);
 
     color: #333;
 }
 
 textarea {
-
-    min-height: 130px;
-
+    min-height: 140px;
     resize: vertical;
 }
 
@@ -114,11 +108,13 @@ button {
 
     border-radius: 14px;
 
+    color: white;
+
     font-size: 17px;
 
     font-weight: bold;
 
-    color: white;
+    cursor: pointer;
 
     background:
         linear-gradient(135deg,#ff4f9a,#9b5cff);
@@ -126,15 +122,11 @@ button {
     box-shadow:
         0 10px 30px rgba(180,80,255,0.35);
 
-    cursor: pointer;
-
     transition: 0.25s;
 }
 
 button:active {
-
     transform: scale(0.97);
-
 }
 
 .hidden {
@@ -147,13 +139,72 @@ button:active {
 
     color: #ff9b9b;
 
+    font-weight: bold;
+
     margin-top: 12px;
+}
+
+
+/* OCCASION BUTTONS */
+
+.occasions {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-top: 20px;
+}
+
+.occasion {
+
+    padding: 17px 10px;
+
+    border-radius: 16px;
+
+    background: rgba(255,255,255,0.09);
+
+    border: 1px solid rgba(255,255,255,0.14);
+
+    color: white;
+
+    cursor: pointer;
+
+    text-align: center;
+
+    transition: 0.25s;
+
+    font-size: 15px;
 
     font-weight: bold;
 }
 
+.occasion:hover {
 
-/* Floating particles */
+    transform: translateY(-3px);
+
+    background: rgba(255,255,255,0.18);
+}
+
+.occasion.selected {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff4f9a,
+            #9b5cff
+        );
+
+    border-color: transparent;
+
+    box-shadow:
+        0 8px 25px rgba(180,80,255,0.4);
+}
+
+
+/* PARTICLES */
 
 .particle {
 
@@ -166,9 +217,9 @@ button:active {
     animation:
         floatUp linear forwards;
 
-    opacity: 0.8;
-
     z-index: 1;
+
+    opacity: 0.85;
 }
 
 @keyframes floatUp {
@@ -184,9 +235,7 @@ button:active {
     }
 
     15% {
-
         opacity: 1;
-
     }
 
     to {
@@ -198,24 +247,19 @@ button:active {
         opacity: 0;
 
     }
-
 }
 
 
-/* Gift */
+/* GIFT */
 
 .gift-area {
-
     text-align: center;
-
-    padding-top: 15px;
 }
 
 .gift {
 
-    width: 150px;
-
-    height: 130px;
+    width: 160px;
+    height: 140px;
 
     margin: 35px auto;
 
@@ -236,7 +280,6 @@ button:active {
             rotate(2deg);
 
     }
-
 }
 
 .gift-box {
@@ -245,17 +288,20 @@ button:active {
 
     bottom: 0;
 
-    width: 150px;
-
-    height: 100px;
+    width: 160px;
+    height: 105px;
 
     background:
-        linear-gradient(135deg,#ff4f7b,#c52d63);
+        linear-gradient(
+            135deg,
+            #ff4f7b,
+            #c52d63
+        );
 
     border-radius: 8px;
 
     box-shadow:
-        0 15px 35px rgba(0,0,0,0.3);
+        0 15px 35px rgba(0,0,0,0.35);
 }
 
 .gift-box::after {
@@ -264,13 +310,11 @@ button:active {
 
     position: absolute;
 
-    left: 62px;
-
+    left: 67px;
     top: 0;
 
-    width: 25px;
-
-    height: 100px;
+    width: 26px;
+    height: 105px;
 
     background: #ffd35a;
 }
@@ -279,23 +323,24 @@ button:active {
 
     position: absolute;
 
-    top: 10px;
-
+    top: 8px;
     left: -8px;
 
-    width: 166px;
-
-    height: 35px;
+    width: 176px;
+    height: 38px;
 
     background:
-        linear-gradient(135deg,#ff668d,#d93269);
+        linear-gradient(
+            135deg,
+            #ff668d,
+            #d93269
+        );
 
     border-radius: 8px;
 
     z-index: 2;
 
     transition: 0.8s;
-
 }
 
 .gift-lid::after {
@@ -304,30 +349,26 @@ button:active {
 
     position: absolute;
 
-    left: 70px;
-
+    left: 75px;
     top: 0;
 
-    width: 25px;
-
-    height: 35px;
+    width: 26px;
+    height: 38px;
 
     background: #ffd35a;
-
 }
 
 .gift.open .gift-lid {
 
     transform:
-        translateY(-100px)
+        translateY(-110px)
         rotate(-12deg);
 
     opacity: 0;
-
 }
 
 
-/* Surprise */
+/* SURPRISE */
 
 .surprise {
 
@@ -345,7 +386,7 @@ button:active {
 
         transform:
             translateY(30px)
-            scale(0.95);
+            scale(0.94);
 
     }
 
@@ -358,12 +399,13 @@ button:active {
             scale(1);
 
     }
-
 }
 
 .big-title {
 
-    font-size: 38px;
+    font-size: 39px;
+
+    font-weight: bold;
 
     background:
         linear-gradient(
@@ -398,18 +440,17 @@ button:active {
         filter:
             drop-shadow(
                 0 0 18px
-                rgba(255,100,200,0.8)
+                rgba(255,100,200,0.85)
             );
 
     }
-
 }
 
 .photo {
 
     width: 100%;
 
-    max-height: 300px;
+    max-height: 320px;
 
     object-fit: cover;
 
@@ -418,7 +459,7 @@ button:active {
     margin-top: 20px;
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,0.4);
+        0 15px 45px rgba(0,0,0,0.45);
 
     animation:
         photoIn 1.5s ease;
@@ -445,7 +486,6 @@ button:active {
             rotate(0);
 
     }
-
 }
 
 .message {
@@ -458,19 +498,20 @@ button:active {
 
     margin-top: 25px;
 
+    font-size: 17px;
+
     animation:
         appear 2s ease;
 }
 
 
-/* Confetti */
+/* CONFETTI */
 
 .confetti {
 
     position: fixed;
 
     width: 9px;
-
     height: 14px;
 
     top: -20px;
@@ -490,32 +531,72 @@ button:active {
             rotate(720deg);
 
     }
-
 }
 
 
-/* Mobile */
+/* FIREWORK */
+
+.firework {
+
+    position: fixed;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    z-index: 15;
+
+    animation:
+        explode 1.2s ease-out forwards;
+}
+
+@keyframes explode {
+
+    from {
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+        opacity: 1;
+    }
+
+    to {
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(0.2);
+
+        opacity: 0;
+    }
+}
+
+
+/* MOBILE */
 
 @media(max-width:500px) {
 
     .card {
-
         padding: 22px;
-
     }
 
     h1 {
-
         font-size: 28px;
-
     }
 
     .big-title {
-
-        font-size: 32px;
-
+        font-size: 33px;
     }
 
+    .occasions {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 </style>
@@ -529,26 +610,118 @@ button:active {
 <div class="card">
 
 
-<!-- CREATE -->
+<!-- ==========================
+CREATE PAGE
+========================== -->
 
 <div id="createPage">
+
 
 <h1>
 Create Your Surprise
 </h1>
 
 <p class="subtitle">
-Create a little digital birthday gift for someone special.
+Choose an occasion and create a little surprise for someone special.
 </p>
 
 
 <label>
-Birthday person's name
+What is this surprise for?
+</label>
+
+
+<div class="occasions">
+
+
+<div
+class="occasion"
+data-value="Birthday"
+onclick="selectOccasion(this)">
+Birthday
+</div>
+
+
+<div
+class="occasion"
+data-value="New Year"
+onclick="selectOccasion(this)">
+New Year
+</div>
+
+
+<div
+class="occasion"
+data-value="Exam / Good Luck"
+onclick="selectOccasion(this)">
+Exam / Good Luck
+</div>
+
+
+<div
+class="occasion"
+data-value="Anniversary"
+onclick="selectOccasion(this)">
+Anniversary
+</div>
+
+
+<div
+class="occasion"
+data-value="Congratulations"
+onclick="selectOccasion(this)">
+Congratulations
+</div>
+
+
+<div
+class="occasion"
+data-value="Thank You"
+onclick="selectOccasion(this)">
+Thank You
+</div>
+
+
+<div
+class="occasion"
+data-value="Just For You"
+onclick="selectOccasion(this)">
+Just For You
+</div>
+
+
+<div
+class="occasion"
+data-value="Custom"
+onclick="selectOccasion(this)">
+Custom
+</div>
+
+
+</div>
+
+
+<div id="customBox" class="hidden">
+
+<label>
+Custom occasion
+</label>
+
+<input
+id="customOccasion"
+placeholder="Example: Good Luck for your new job"
+>
+
+</div>
+
+
+<label>
+Name
 </label>
 
 <input
 id="personName"
-placeholder="Example: Dehansa Hansadi"
+placeholder="Who is this for?"
 >
 
 
@@ -558,17 +731,17 @@ Nickname
 
 <input
 id="nickname"
-placeholder="Example: Hansi"
+placeholder="What do you call them?"
 >
 
 
 <label>
-Birthday message
+Your message
 </label>
 
 <textarea
 id="message"
-placeholder="Write your message..."
+placeholder="Write anything you want to say..."
 ></textarea>
 
 
@@ -593,27 +766,30 @@ id="createError"
 class="error">
 </div>
 
+
 </div>
 
 
 
-<!-- NAME CHECK -->
+<!-- ==========================
+NAME CHECK
+========================== -->
 
 <div
 id="checkPage"
 class="hidden">
 
-<div class="gift-area">
 
 <h1>
 A Little Surprise
 </h1>
 
-<p class="subtitle">
+
+<p
+id="checkSubtitle"
+class="subtitle">
 Someone made something special for you.
 </p>
-
-</div>
 
 
 <input
@@ -623,7 +799,7 @@ placeholder="Enter your name"
 
 
 <button onclick="checkPerson()">
-Open Surprise
+Continue
 </button>
 
 
@@ -632,23 +808,32 @@ id="checkError"
 class="error">
 </div>
 
+
 </div>
 
 
 
-<!-- GIFT -->
+<!-- ==========================
+GIFT PAGE
+========================== -->
 
 <div
 id="giftPage"
 class="hidden">
 
+
 <div class="gift-area">
 
-<h1>
+
+<h1
+id="giftTitle">
 Your Gift Is Waiting
 </h1>
 
-<p class="subtitle">
+
+<p
+id="giftSubtitle"
+class="subtitle">
 Tap the gift to open it.
 </p>
 
@@ -658,40 +843,58 @@ class="gift"
 id="gift"
 onclick="openGift()">
 
+
 <div class="gift-lid"></div>
 
 <div class="gift-box"></div>
 
-</div>
 
 </div>
 
+
+</div>
+
+
 </div>
 
 
 
-<!-- SURPRISE -->
+<!-- ==========================
+SURPRISE PAGE
+========================== -->
 
 <div
 id="surprisePage"
 class="hidden">
 
+
 <div class="surprise">
 
-<div class="big-title">
-Happy Birthday!
+
+<div
+id="bigTitle"
+class="big-title">
 </div>
 
-<h2 id="surpriseTitle"></h2>
 
-<div id="photoContainer"></div>
+<h2
+id="surpriseTitle">
+</h2>
+
+
+<div
+id="photoContainer">
+</div>
+
 
 <p
 id="surpriseMessage"
 class="message">
 </p>
 
+
 </div>
+
 
 </div>
 
@@ -703,26 +906,115 @@ class="message">
 <script>
 
 
-/* ============================
+/* ==========================
 DATA
-============================ */
+========================== */
 
 let data = {
 
+occasion: "",
+
 name: "",
+
 nickname: "",
+
 message: "",
+
 photo: ""
 
 };
 
 
 
-/* ============================
+/* ==========================
+OCCASION
+========================== */
+
+function selectOccasion(element) {
+
+
+document
+.querySelectorAll(".occasion")
+.forEach(function(item) {
+
+item.classList.remove("selected");
+
+});
+
+
+element.classList.add("selected");
+
+
+data.occasion =
+element.dataset.value;
+
+
+if(data.occasion === "Custom") {
+
+document
+.getElementById("customBox")
+.classList
+.remove("hidden");
+
+}
+
+else {
+
+document
+.getElementById("customBox")
+.classList
+.add("hidden");
+
+}
+
+}
+
+
+
+/* ==========================
 CREATE
-============================ */
+========================== */
 
 function createSurprise() {
+
+
+const error =
+document
+.getElementById("createError");
+
+
+if(!data.occasion) {
+
+error.innerText =
+"Please choose an occasion.";
+
+return;
+
+}
+
+
+if(data.occasion === "Custom") {
+
+const custom =
+document
+.getElementById("customOccasion")
+.value
+.trim();
+
+if(!custom) {
+
+error.innerText =
+"Please enter your custom occasion.";
+
+return;
+
+}
+
+data.occasion =
+custom;
+
+}
+
 
 const name =
 document
@@ -730,11 +1022,13 @@ document
 .value
 .trim();
 
+
 const nickname =
 document
 .getElementById("nickname")
 .value
 .trim();
+
 
 const message =
 document
@@ -742,14 +1036,11 @@ document
 .value
 .trim();
 
+
 const photo =
 document
 .getElementById("photo")
 .files[0];
-
-const error =
-document
-.getElementById("createError");
 
 
 if(!name || !nickname || !message) {
@@ -762,19 +1053,25 @@ return;
 }
 
 
-data.name = name;
+data.name =
+name;
 
-data.nickname = nickname;
+data.nickname =
+nickname;
 
-data.message = message;
+data.message =
+message;
 
 
 if(photo) {
 
+
 const reader =
 new FileReader();
 
-reader.onload = function(e) {
+
+reader.onload =
+function(e) {
 
 data.photo =
 e.target.result;
@@ -782,6 +1079,7 @@ e.target.result;
 showCheck();
 
 };
+
 
 reader.readAsDataURL(photo);
 
@@ -797,31 +1095,42 @@ showCheck();
 
 
 
-/* ============================
+/* ==========================
 CHECK PAGE
-============================ */
+========================== */
 
 function showCheck() {
+
 
 document
 .getElementById("createPage")
 .classList
 .add("hidden");
 
+
 document
 .getElementById("checkPage")
 .classList
 .remove("hidden");
 
+
+document
+.getElementById("checkSubtitle")
+.innerText =
+"Someone made a special " +
+data.occasion.toLowerCase() +
+" surprise for you.";
+
 }
 
 
 
-/* ============================
+/* ==========================
 CHECK NAME
-============================ */
+========================== */
 
 function checkPerson() {
+
 
 const entered =
 document
@@ -830,13 +1139,16 @@ document
 .trim()
 .toLowerCase();
 
+
 const correct =
 data.name
 .toLowerCase();
 
+
 const nickname =
 data.nickname
 .toLowerCase();
+
 
 const error =
 document
@@ -861,20 +1173,90 @@ document
 .classList
 .add("hidden");
 
+
 document
 .getElementById("giftPage")
 .classList
 .remove("hidden");
 
+
+setGiftText();
+
 }
 
 
 
-/* ============================
+/* ==========================
+GIFT TEXT
+========================== */
+
+function setGiftText() {
+
+
+const title =
+document
+.getElementById("giftTitle");
+
+
+const subtitle =
+document
+.getElementById("giftSubtitle");
+
+
+if(data.occasion === "Birthday") {
+
+title.innerText =
+"Your Birthday Gift Is Waiting";
+
+subtitle.innerText =
+"Tap the gift to open it.";
+
+}
+
+else if(
+data.occasion === "New Year"
+) {
+
+title.innerText =
+"Your New Year Surprise Is Waiting";
+
+subtitle.innerText =
+"Tap the gift to see your surprise.";
+
+}
+
+else if(
+data.occasion === "Exam / Good Luck"
+) {
+
+title.innerText =
+"Your Good Luck Surprise Is Waiting";
+
+subtitle.innerText =
+"Tap the gift before you begin.";
+
+}
+
+else {
+
+title.innerText =
+"Something Special Is Waiting";
+
+subtitle.innerText =
+"Tap the gift to open your surprise.";
+
+}
+
+}
+
+
+
+/* ==========================
 OPEN GIFT
-============================ */
+========================== */
 
 function openGift() {
+
 
 document
 .getElementById("gift")
@@ -884,10 +1266,12 @@ document
 
 setTimeout(function() {
 
+
 document
 .getElementById("giftPage")
 .classList
 .add("hidden");
+
 
 document
 .getElementById("surprisePage")
@@ -895,9 +1279,37 @@ document
 .remove("hidden");
 
 
+showSurprise();
+
+
+},900);
+
+}
+
+
+
+/* ==========================
+SHOW SURPRISE
+========================== */
+
+function showSurprise() {
+
+
+const bigTitle =
 document
-.getElementById("surpriseTitle")
-.innerText =
+.getElementById("bigTitle");
+
+
+const title =
+document
+.getElementById("surpriseTitle");
+
+
+bigTitle.innerText =
+getMainTitle();
+
+
+title.innerText =
 "Dear " +
 data.nickname;
 
@@ -912,14 +1324,18 @@ data.message;
 
 if(data.photo) {
 
+
 const img =
 document.createElement("img");
+
 
 img.src =
 data.photo;
 
+
 img.className =
 "photo";
+
 
 document
 .getElementById("photoContainer")
@@ -928,28 +1344,108 @@ document
 }
 
 
-/* CONFETTI */
+/* EFFECT */
 
-for(let i=0;i<80;i++) {
+if(data.occasion === "New Year") {
+
+launchFireworks();
+
+}
+
+else {
+
+launchConfetti();
+
+}
+
+}
+
+
+
+/* ==========================
+MAIN TITLE
+========================== */
+
+function getMainTitle() {
+
+
+if(data.occasion === "Birthday") {
+
+return "Happy Birthday!";
+
+}
+
+
+if(data.occasion === "New Year") {
+
+return "Happy New Year!";
+
+}
+
+
+if(data.occasion === "Exam / Good Luck") {
+
+return "All The Best!";
+
+}
+
+
+if(data.occasion === "Anniversary") {
+
+return "Happy Anniversary!";
+
+}
+
+
+if(data.occasion === "Congratulations") {
+
+return "Congratulations!";
+
+}
+
+
+if(data.occasion === "Thank You") {
+
+return "Thank You!";
+
+}
+
+
+if(data.occasion === "Just For You") {
+
+return "Just For You!";
+
+}
+
+
+return data.occasion;
+
+}
+
+
+
+/* ==========================
+CONFETTI
+========================== */
+
+function launchConfetti() {
+
+
+for(let i = 0; i < 100; i++) {
 
 createConfetti();
 
 }
 
-},900);
-
 }
 
 
-
-/* ============================
-CONFETTI
-============================ */
-
 function createConfetti() {
+
 
 const piece =
 document.createElement("div");
+
 
 piece.className =
 "confetti";
@@ -965,16 +1461,25 @@ Math.random()*1.5 +
 "s";
 
 
-piece.style.background =
-[
+const colors = [
+
 "#ff4f9a",
+
 "#ffd45a",
+
 "#72d9ff",
+
 "#9d72ff",
+
 "#ffffff"
-][
+
+];
+
+
+piece.style.background =
+colors[
 Math.floor(
-Math.random()*5
+Math.random()*colors.length
 )
 ];
 
@@ -983,7 +1488,7 @@ document.body
 .appendChild(piece);
 
 
-setTimeout(function(){
+setTimeout(function() {
 
 piece.remove();
 
@@ -993,14 +1498,129 @@ piece.remove();
 
 
 
-/* ============================
-FLOATING HEARTS
-============================ */
+/* ==========================
+FIREWORKS
+========================== */
+
+function launchFireworks() {
+
+
+for(let burst = 0; burst < 5; burst++) {
+
+
+setTimeout(function() {
+
+
+const centerX =
+20 +
+Math.random()*60;
+
+
+const centerY =
+20 +
+Math.random()*35;
+
+
+for(let i = 0; i < 25; i++) {
+
+
+const fire =
+document.createElement("div");
+
+
+fire.className =
+"firework";
+
+
+fire.style.left =
+centerX + "vw";
+
+
+fire.style.top =
+centerY + "vh";
+
+
+const angle =
+Math.random() *
+Math.PI *
+2;
+
+
+const distance =
+60 +
+Math.random()*100;
+
+
+fire.style.setProperty(
+"--x",
+Math.cos(angle) *
+distance +
+"px"
+);
+
+
+fire.style.setProperty(
+"--y",
+Math.sin(angle) *
+distance +
+"px"
+);
+
+
+const colors = [
+
+"#ff4f9a",
+
+"#ffd45a",
+
+"#72d9ff",
+
+"#9d72ff",
+
+"#ffffff"
+
+];
+
+
+fire.style.background =
+colors[
+Math.floor(
+Math.random()*colors.length
+)
+];
+
+
+document.body
+.appendChild(fire);
+
+
+setTimeout(function() {
+
+fire.remove();
+
+},1300);
+
+}
+
+
+}, burst * 700);
+
+}
+
+}
+
+
+
+/* ==========================
+FLOATING PARTICLES
+========================== */
 
 function createParticle() {
 
+
 const particle =
 document.createElement("div");
+
 
 particle.className =
 "particle";
@@ -1008,10 +1628,15 @@ particle.className =
 
 particle.innerText =
 [
+
 "♥",
+
 "✦",
+
 "♡",
+
 "•"
+
 ][
 Math.floor(
 Math.random()*4
@@ -1025,14 +1650,18 @@ Math.random()*100 +
 
 
 particle.style.fontSize =
-(12 +
-Math.random()*22) +
+(
+12 +
+Math.random()*22
+) +
 "px";
 
 
 particle.style.animationDuration =
-(5 +
-Math.random()*5) +
+(
+5 +
+Math.random()*5
+) +
 "s";
 
 
@@ -1040,7 +1669,7 @@ document.body
 .appendChild(particle);
 
 
-setTimeout(function(){
+setTimeout(function() {
 
 particle.remove();
 
