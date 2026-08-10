@@ -16,77 +16,125 @@ body {
     margin: 0;
     min-height: 100vh;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ffd6e7, #e4d7ff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(circle at top, #3b235a, #160d24 70%);
+
+    color: white;
 }
 
 .card {
-    width: 100%;
+    width: calc(100% - 30px);
     max-width: 520px;
-    background: white;
+
+    margin: 30px auto;
+
     padding: 30px;
-    border-radius: 25px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.09);
+
+    border: 1px solid rgba(255,255,255,0.18);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.35);
+
+    position: relative;
+    z-index: 5;
 }
 
 h1 {
     text-align: center;
-    color: #553365;
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
 }
 
 .subtitle {
     text-align: center;
-    color: #777;
-    margin-bottom: 25px;
+
+    color: #ddd;
+
+    line-height: 1.6;
 }
 
 label {
     display: block;
-    margin-top: 15px;
+
+    margin-top: 18px;
     margin-bottom: 7px;
+
+    color: #eee;
+
     font-weight: bold;
-    color: #4d3a55;
 }
 
 input,
 textarea,
 select {
+
     width: 100%;
+
     padding: 14px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
+
+    border-radius: 13px;
+
+    border: none;
+
+    outline: none;
+
     font-size: 16px;
-    font-family: inherit;
+
+    background: rgba(255,255,255,0.95);
+
+    color: #333;
 }
 
 textarea {
+
     min-height: 130px;
+
     resize: vertical;
 }
 
 button {
+
     width: 100%;
+
     padding: 15px;
+
     margin-top: 20px;
+
     border: none;
-    border-radius: 12px;
-    background: #754c8f;
-    color: white;
+
+    border-radius: 14px;
+
     font-size: 17px;
+
     font-weight: bold;
+
+    color: white;
+
+    background:
+        linear-gradient(135deg,#ff4f9a,#9b5cff);
+
+    box-shadow:
+        0 10px 30px rgba(180,80,255,0.35);
+
     cursor: pointer;
+
+    transition: 0.25s;
 }
 
-button:hover {
-    opacity: 0.9;
-}
+button:active {
 
-.secondary {
-    background: #ddd;
-    color: #333;
+    transform: scale(0.97);
+
 }
 
 .hidden {
@@ -94,41 +142,378 @@ button:hover {
 }
 
 .error {
+
     text-align: center;
-    color: #d33;
+
+    color: #ff9b9b;
+
     margin-top: 12px;
+
     font-weight: bold;
 }
 
-.heart {
+
+/* Floating particles */
+
+.particle {
+
+    position: fixed;
+
+    bottom: -30px;
+
+    pointer-events: none;
+
+    animation:
+        floatUp linear forwards;
+
+    opacity: 0.8;
+
+    z-index: 1;
+}
+
+@keyframes floatUp {
+
+    from {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: 1;
+
+    }
+
+    to {
+
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* Gift */
+
+.gift-area {
+
     text-align: center;
-    font-size: 65px;
-    animation: beat 1.2s infinite;
+
+    padding-top: 15px;
+}
+
+.gift {
+
+    width: 150px;
+
+    height: 130px;
+
+    margin: 35px auto;
+
+    position: relative;
+
+    cursor: pointer;
+
+    animation:
+        giftFloat 2s infinite ease-in-out;
+}
+
+@keyframes giftFloat {
+
+    50% {
+
+        transform:
+            translateY(-10px)
+            rotate(2deg);
+
+    }
+
+}
+
+.gift-box {
+
+    position: absolute;
+
+    bottom: 0;
+
+    width: 150px;
+
+    height: 100px;
+
+    background:
+        linear-gradient(135deg,#ff4f7b,#c52d63);
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.3);
+}
+
+.gift-box::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 62px;
+
+    top: 0;
+
+    width: 25px;
+
+    height: 100px;
+
+    background: #ffd35a;
+}
+
+.gift-lid {
+
+    position: absolute;
+
+    top: 10px;
+
+    left: -8px;
+
+    width: 166px;
+
+    height: 35px;
+
+    background:
+        linear-gradient(135deg,#ff668d,#d93269);
+
+    border-radius: 8px;
+
+    z-index: 2;
+
+    transition: 0.8s;
+
+}
+
+.gift-lid::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 70px;
+
+    top: 0;
+
+    width: 25px;
+
+    height: 35px;
+
+    background: #ffd35a;
+
+}
+
+.gift.open .gift-lid {
+
+    transform:
+        translateY(-100px)
+        rotate(-12deg);
+
+    opacity: 0;
+
+}
+
+
+/* Surprise */
+
+.surprise {
+
+    text-align: center;
+
+    animation:
+        appear 1.2s ease;
+}
+
+@keyframes appear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+.big-title {
+
+    font-size: 38px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffd45a,
+            #ff72bd,
+            #b47cff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        titleGlow 2s infinite alternate;
+}
+
+@keyframes titleGlow {
+
+    from {
+
+        filter:
+            drop-shadow(
+                0 0 5px
+                rgba(255,100,200,0.3)
+            );
+
+    }
+
+    to {
+
+        filter:
+            drop-shadow(
+                0 0 18px
+                rgba(255,100,200,0.8)
+            );
+
+    }
+
+}
+
+.photo {
+
+    width: 100%;
+
+    max-height: 300px;
+
+    object-fit: cover;
+
+    border-radius: 20px;
+
+    margin-top: 20px;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.4);
+
+    animation:
+        photoIn 1.5s ease;
+}
+
+@keyframes photoIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.7)
+            rotate(-5deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+
+    }
+
 }
 
 .message {
+
     white-space: pre-line;
-    text-align: center;
-    line-height: 1.8;
-    color: #555;
+
+    line-height: 1.9;
+
+    color: #eee;
+
+    margin-top: 25px;
+
+    animation:
+        appear 2s ease;
 }
 
-.photo-preview {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+
+/* Confetti */
+
+.confetti {
+
+    position: fixed;
+
+    width: 9px;
+
+    height: 14px;
+
+    top: -20px;
+
+    z-index: 20;
+
+    animation:
+        confettiFall 3s linear forwards;
 }
 
-.photo-preview img {
-    max-width: 100%;
-    max-height: 280px;
-    border-radius: 18px;
+@keyframes confettiFall {
+
+    to {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+    }
+
 }
 
-@keyframes beat {
 
-    50% {
-        transform: scale(1.2);
+/* Mobile */
+
+@media(max-width:500px) {
+
+    .card {
+
+        padding: 22px;
+
+    }
+
+    h1 {
+
+        font-size: 28px;
+
+    }
+
+    .big-title {
+
+        font-size: 32px;
+
     }
 
 }
@@ -137,33 +522,33 @@ button:hover {
 
 </head>
 
+
 <body>
 
 
 <div class="card">
 
 
-<!-- ============================= -->
-<!-- CREATE PAGE -->
-<!-- ============================= -->
+<!-- CREATE -->
 
 <div id="createPage">
 
-<h1>Create a Surprise</h1>
+<h1>
+Create Your Surprise
+</h1>
 
 <p class="subtitle">
-Create a special birthday surprise for someone.
+Create a little digital birthday gift for someone special.
 </p>
 
 
 <label>
-Birthday person's full name
+Birthday person's name
 </label>
 
 <input
-    id="personName"
-    type="text"
-    placeholder="Example: Dehansa Hansadi"
+id="personName"
+placeholder="Example: Dehansa Hansadi"
 >
 
 
@@ -172,41 +557,19 @@ Nickname
 </label>
 
 <input
-    id="nickname"
-    type="text"
-    placeholder="Example: Hansi"
+id="nickname"
+placeholder="Example: Hansi"
 >
 
 
 <label>
-Your message
+Birthday message
 </label>
 
 <textarea
-    id="message"
-    placeholder="Write your birthday message here..."
+id="message"
+placeholder="Write your message..."
 ></textarea>
-
-
-<label>
-Choose a theme
-</label>
-
-<select id="theme">
-
-<option value="pink">
-Pink & Purple
-</option>
-
-<option value="blue">
-Blue
-</option>
-
-<option value="dark">
-Dark
-</option>
-
-</select>
 
 
 <label>
@@ -214,9 +577,9 @@ Choose a photo
 </label>
 
 <input
-    id="photo"
-    type="file"
-    accept="image/*"
+id="photo"
+type="file"
+accept="image/*"
 >
 
 
@@ -225,344 +588,475 @@ Create Surprise
 </button>
 
 
-<div id="createError" class="error"></div>
+<div
+id="createError"
+class="error">
+</div>
 
 </div>
 
 
 
-<!-- ============================= -->
-<!-- NAME CHECK PAGE -->
-<!-- ============================= -->
+<!-- NAME CHECK -->
 
-<div id="checkPage" class="hidden">
+<div
+id="checkPage"
+class="hidden">
 
-<div class="heart">
-♥
-</div>
+<div class="gift-area">
 
 <h1>
-A Little Surprise...
+A Little Surprise
 </h1>
 
 <p class="subtitle">
-Enter your name to see if this surprise is for you.
+Someone made something special for you.
 </p>
+
+</div>
 
 
 <input
-    id="checkName"
-    type="text"
-    placeholder="Enter your name"
+id="checkName"
+placeholder="Enter your name"
 >
 
 
 <button onclick="checkPerson()">
-Continue
+Open Surprise
 </button>
 
 
-<div id="checkError" class="error"></div>
+<div
+id="checkError"
+class="error">
+</div>
 
 </div>
 
 
 
-<!-- ============================= -->
-<!-- SURPRISE PAGE -->
-<!-- ============================= -->
+<!-- GIFT -->
 
-<div id="surprisePage" class="hidden">
+<div
+id="giftPage"
+class="hidden">
 
-<div class="heart">
-♥
-</div>
+<div class="gift-area">
 
-<h1 id="surpriseTitle"></h1>
+<h1>
+Your Gift Is Waiting
+</h1>
 
-<p
-    id="surpriseMessage"
-    class="message">
+<p class="subtitle">
+Tap the gift to open it.
 </p>
 
 
 <div
-    id="photoContainer"
-    class="photo-preview">
-</div>
+class="gift"
+id="gift"
+onclick="openGift()">
 
+<div class="gift-lid"></div>
 
-<button
-    class="secondary"
-    onclick="location.reload()">
-Back
-</button>
+<div class="gift-box"></div>
 
 </div>
 
+</div>
 
 </div>
+
+
+
+<!-- SURPRISE -->
+
+<div
+id="surprisePage"
+class="hidden">
+
+<div class="surprise">
+
+<div class="big-title">
+Happy Birthday!
+</div>
+
+<h2 id="surpriseTitle"></h2>
+
+<div id="photoContainer"></div>
+
+<p
+id="surpriseMessage"
+class="message">
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
 
 
 <script>
 
 
-/* =================================
-   DATA
-================================= */
+/* ============================
+DATA
+============================ */
 
-let surpriseData = {
+let data = {
 
-    name: "",
-    nickname: "",
-    message: "",
-    theme: "",
-    photo: ""
+name: "",
+nickname: "",
+message: "",
+photo: ""
 
 };
 
 
 
-/* =================================
-   CREATE SURPRISE
-================================= */
+/* ============================
+CREATE
+============================ */
 
 function createSurprise() {
 
+const name =
+document
+.getElementById("personName")
+.value
+.trim();
 
-    const name =
-        document
-        .getElementById("personName")
-        .value
-        .trim();
+const nickname =
+document
+.getElementById("nickname")
+.value
+.trim();
 
+const message =
+document
+.getElementById("message")
+.value
+.trim();
 
-    const nickname =
-        document
-        .getElementById("nickname")
-        .value
-        .trim();
+const photo =
+document
+.getElementById("photo")
+.files[0];
 
-
-    const message =
-        document
-        .getElementById("message")
-        .value
-        .trim();
-
-
-    const theme =
-        document
-        .getElementById("theme")
-        .value;
-
-
-    const photo =
-        document
-        .getElementById("photo")
-        .files[0];
+const error =
+document
+.getElementById("createError");
 
 
-    const error =
-        document
-        .getElementById("createError");
+if(!name || !nickname || !message) {
+
+error.innerText =
+"Please fill in the name, nickname and message.";
+
+return;
+
+}
 
 
-    if (!name || !nickname || !message) {
+data.name = name;
 
-        error.innerText =
-            "Please fill in all the required fields.";
+data.nickname = nickname;
 
-        return;
-
-    }
+data.message = message;
 
 
-    surpriseData.name = name;
+if(photo) {
 
-    surpriseData.nickname = nickname;
+const reader =
+new FileReader();
 
-    surpriseData.message = message;
+reader.onload = function(e) {
 
-    surpriseData.theme = theme;
+data.photo =
+e.target.result;
 
+showCheck();
 
-    /* PHOTO */
+};
 
-    if (photo) {
+reader.readAsDataURL(photo);
 
-        const reader =
-            new FileReader();
+}
 
-        reader.onload = function(e) {
+else {
 
-            surpriseData.photo =
-                e.target.result;
+showCheck();
 
-            showCheckPage();
-
-        };
-
-        reader.readAsDataURL(photo);
-
-    }
-
-    else {
-
-        showCheckPage();
-
-    }
+}
 
 }
 
 
 
-/* =================================
-   SHOW CHECK PAGE
-================================= */
+/* ============================
+CHECK PAGE
+============================ */
 
-function showCheckPage() {
+function showCheck() {
 
-    document
-    .getElementById("createPage")
-    .classList
-    .add("hidden");
+document
+.getElementById("createPage")
+.classList
+.add("hidden");
 
-
-    document
-    .getElementById("checkPage")
-    .classList
-    .remove("hidden");
+document
+.getElementById("checkPage")
+.classList
+.remove("hidden");
 
 }
 
 
 
-/* =================================
-   CHECK NAME
-================================= */
+/* ============================
+CHECK NAME
+============================ */
 
 function checkPerson() {
 
+const entered =
+document
+.getElementById("checkName")
+.value
+.trim()
+.toLowerCase();
 
-    const entered =
-        document
-        .getElementById("checkName")
-        .value
-        .trim()
-        .toLowerCase();
+const correct =
+data.name
+.toLowerCase();
 
+const nickname =
+data.nickname
+.toLowerCase();
 
-    const correctName =
-        surpriseData.name
-        .toLowerCase();
-
-
-    const nickname =
-        surpriseData.nickname
-        .toLowerCase();
-
-
-    const error =
-        document
-        .getElementById("checkError");
+const error =
+document
+.getElementById("checkError");
 
 
-    if (
-        entered !== correctName &&
-        entered !== nickname
-    ) {
+if(
+entered !== correct &&
+entered !== nickname
+) {
 
-        error.innerText =
-            "No no... This is not for you.";
+error.innerText =
+"No no... This is not for you.";
 
-        return;
+return;
 
-    }
+}
 
 
-    showSurprise();
+document
+.getElementById("checkPage")
+.classList
+.add("hidden");
+
+document
+.getElementById("giftPage")
+.classList
+.remove("hidden");
 
 }
 
 
 
-/* =================================
-   SHOW SURPRISE
-================================= */
+/* ============================
+OPEN GIFT
+============================ */
 
-function showSurprise() {
+function openGift() {
 
-
-    document
-    .getElementById("checkPage")
-    .classList
-    .add("hidden");
-
-
-    document
-    .getElementById("surprisePage")
-    .classList
-    .remove("hidden");
+document
+.getElementById("gift")
+.classList
+.add("open");
 
 
-    document
-    .getElementById("surpriseTitle")
-    .innerText =
-        "This is for you, " +
-        surpriseData.nickname +
-        "!";
+setTimeout(function() {
+
+document
+.getElementById("giftPage")
+.classList
+.add("hidden");
+
+document
+.getElementById("surprisePage")
+.classList
+.remove("hidden");
 
 
-    document
-    .getElementById("surpriseMessage")
-    .innerText =
-        surpriseData.message;
+document
+.getElementById("surpriseTitle")
+.innerText =
+"Dear " +
+data.nickname;
 
 
-    /* PHOTO */
-
-    if (surpriseData.photo) {
-
-        const img =
-            document.createElement("img");
-
-        img.src =
-            surpriseData.photo;
-
-        document
-        .getElementById("photoContainer")
-        .appendChild(img);
-
-    }
+document
+.getElementById("surpriseMessage")
+.innerText =
+data.message;
 
 
-    /* THEME */
+/* PHOTO */
 
-    if (
-        surpriseData.theme === "blue"
-    ) {
+if(data.photo) {
 
-        document.body.style.background =
-            "linear-gradient(135deg,#c9e9ff,#d9d4ff)";
+const img =
+document.createElement("img");
 
-    }
+img.src =
+data.photo;
 
+img.className =
+"photo";
 
-    if (
-        surpriseData.theme === "dark"
-    ) {
-
-        document.body.style.background =
-            "linear-gradient(135deg,#1e1e2f,#3b2947)";
-
-    }
+document
+.getElementById("photoContainer")
+.appendChild(img);
 
 }
+
+
+/* CONFETTI */
+
+for(let i=0;i<80;i++) {
+
+createConfetti();
+
+}
+
+},900);
+
+}
+
+
+
+/* ============================
+CONFETTI
+============================ */
+
+function createConfetti() {
+
+const piece =
+document.createElement("div");
+
+piece.className =
+"confetti";
+
+
+piece.style.left =
+Math.random()*100 +
+"vw";
+
+
+piece.style.animationDelay =
+Math.random()*1.5 +
+"s";
+
+
+piece.style.background =
+[
+"#ff4f9a",
+"#ffd45a",
+"#72d9ff",
+"#9d72ff",
+"#ffffff"
+][
+Math.floor(
+Math.random()*5
+)
+];
+
+
+document.body
+.appendChild(piece);
+
+
+setTimeout(function(){
+
+piece.remove();
+
+},4500);
+
+}
+
+
+
+/* ============================
+FLOATING HEARTS
+============================ */
+
+function createParticle() {
+
+const particle =
+document.createElement("div");
+
+particle.className =
+"particle";
+
+
+particle.innerText =
+[
+"♥",
+"✦",
+"♡",
+"•"
+][
+Math.floor(
+Math.random()*4
+)
+];
+
+
+particle.style.left =
+Math.random()*100 +
+"vw";
+
+
+particle.style.fontSize =
+(12 +
+Math.random()*22) +
+"px";
+
+
+particle.style.animationDuration =
+(5 +
+Math.random()*5) +
+"s";
+
+
+document.body
+.appendChild(particle);
+
+
+setTimeout(function(){
+
+particle.remove();
+
+},10000);
+
+}
+
+
+setInterval(
+createParticle,
+700
+);
 
 
 </script>
 
-</body>
 
+</body>
 </html>
