@@ -1,606 +1,1187 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>My Little Surprise</title>
+<title>Little Surprise</title>
 
 <style>
 
-* {
-    box-sizing: border-box;
+/* =========================
+   RESET
+========================= */
+
+*{
+    box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    overflow-x: hidden;
-    color: white;
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+
+    font-family:
+    Inter,
+    Arial,
+    sans-serif;
+
+    color:#fff;
+
+    overflow-x:hidden;
 
     background:
-        radial-gradient(circle at top, #3b235a, #160d24 75%);
+    radial-gradient(
+        circle at 20% 10%,
+        rgba(255,82,170,.35),
+        transparent 30%
+    ),
+    radial-gradient(
+        circle at 80% 20%,
+        rgba(107,92,255,.35),
+        transparent 30%
+    ),
+    radial-gradient(
+        circle at 50% 100%,
+        rgba(0,210,255,.18),
+        transparent 35%
+    ),
+    #0b0615;
 }
 
-.card {
-    width: calc(100% - 30px);
-    max-width: 540px;
 
-    margin: 25px auto;
-    padding: 28px;
+/* =========================
+   MOVING BACKGROUND
+========================= */
 
-    border-radius: 28px;
+body::before{
+    content:"";
 
-    background: rgba(255,255,255,0.09);
+    position:fixed;
 
-    border: 1px solid rgba(255,255,255,0.18);
+    width:500px;
+    height:500px;
 
-    backdrop-filter: blur(16px);
+    left:-180px;
+    top:-180px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(255,70,170,.16),
+        transparent 70%
+    );
+
+    filter:blur(30px);
+
+    animation:
+    moveGlow 12s infinite alternate ease-in-out;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+body::after{
+    content:"";
+
+    position:fixed;
+
+    width:450px;
+    height:450px;
+
+    right:-180px;
+    bottom:-180px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(90,80,255,.18),
+        transparent 70%
+    );
+
+    filter:blur(30px);
+
+    animation:
+    moveGlow2 14s infinite alternate ease-in-out;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+@keyframes moveGlow{
+
+    from{
+        transform:
+        translate(0,0)
+        scale(1);
+    }
+
+    to{
+        transform:
+        translate(180px,160px)
+        scale(1.3);
+    }
+}
+
+@keyframes moveGlow2{
+
+    from{
+        transform:
+        translate(0,0)
+        scale(1);
+    }
+
+    to{
+        transform:
+        translate(-150px,-130px)
+        scale(1.35);
+    }
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+
+    width:
+    calc(100% - 28px);
+
+    max-width:560px;
+
+    margin:25px auto;
+
+    padding:30px;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,255,255,.13),
+        rgba(255,255,255,.045)
+    );
+
+    border:
+    1px solid
+    rgba(255,255,255,.18);
+
+    backdrop-filter:
+    blur(22px);
 
     box-shadow:
-        0 25px 80px rgba(0,0,0,0.4);
+    0 30px 100px
+    rgba(0,0,0,.45);
 
-    position: relative;
-    z-index: 5;
+    position:relative;
+
+    z-index:5;
+
+    animation:
+    cardIn 1s ease;
 }
 
-h1 {
-    text-align: center;
-    font-size: 32px;
-    margin: 5px 0 12px;
+@keyframes cardIn{
+
+    from{
+        opacity:0;
+
+        transform:
+        translateY(30px)
+        scale(.96);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+    }
 }
 
-h2 {
-    text-align: center;
+
+/* =========================
+   TEXT
+========================= */
+
+h1{
+
+    text-align:center;
+
+    font-size:
+    clamp(28px,7vw,42px);
+
+    margin:
+    5px 0 12px;
+
+    letter-spacing:-1px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ff79c6,
+        #b993ff,
+        #72e9ff
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:
+    transparent;
+
+    animation:
+    titleShine 4s
+    infinite linear;
 }
 
-.subtitle {
-    text-align: center;
-    color: #ddd;
-    line-height: 1.6;
-    margin-bottom: 25px;
+@keyframes titleShine{
+
+    0%{
+        filter:
+        drop-shadow(
+            0 0 4px
+            rgba(255,100,200,.2)
+        );
+    }
+
+    50%{
+        filter:
+        drop-shadow(
+            0 0 16px
+            rgba(150,100,255,.6)
+        );
+    }
+
+    100%{
+        filter:
+        drop-shadow(
+            0 0 4px
+            rgba(100,220,255,.2)
+        );
+    }
 }
 
-label {
-    display: block;
-    margin-top: 17px;
-    margin-bottom: 7px;
-    font-weight: bold;
-    color: #eee;
+h2{
+    text-align:center;
 }
+
+.subtitle{
+
+    text-align:center;
+
+    color:
+    rgba(255,255,255,.72);
+
+    line-height:1.7;
+
+    margin-bottom:25px;
+}
+
+
+/* =========================
+   LABELS
+========================= */
+
+label{
+
+    display:block;
+
+    margin-top:18px;
+
+    margin-bottom:8px;
+
+    color:
+    rgba(255,255,255,.9);
+
+    font-weight:bold;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
 
 input,
-textarea,
-select {
+textarea{
 
-    width: 100%;
+    width:100%;
 
-    padding: 14px;
+    padding:15px 16px;
 
-    border: none;
-    outline: none;
+    border:none;
 
-    border-radius: 13px;
+    outline:none;
 
-    font-size: 16px;
+    border-radius:15px;
 
-    background: rgba(255,255,255,0.96);
+    font-size:16px;
 
-    color: #333;
-}
-
-textarea {
-    min-height: 140px;
-    resize: vertical;
-}
-
-button {
-
-    width: 100%;
-
-    padding: 15px;
-
-    margin-top: 20px;
-
-    border: none;
-
-    border-radius: 14px;
-
-    color: white;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    cursor: pointer;
+    color:#27202f;
 
     background:
-        linear-gradient(135deg,#ff4f9a,#9b5cff);
+    rgba(255,255,255,.96);
 
     box-shadow:
-        0 10px 30px rgba(180,80,255,0.35);
+    0 5px 20px
+    rgba(0,0,0,.12);
 
-    transition: 0.25s;
+    transition:.25s;
 }
 
-button:active {
-    transform: scale(0.97);
-}
-
-.hidden {
-    display: none;
-}
-
-.error {
-
-    text-align: center;
-
-    color: #ff9b9b;
-
-    font-weight: bold;
-
-    margin-top: 12px;
-}
-
-
-/* OCCASION BUTTONS */
-
-.occasions {
-
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 12px;
-
-    margin-top: 20px;
-}
-
-.occasion {
-
-    padding: 17px 10px;
-
-    border-radius: 16px;
-
-    background: rgba(255,255,255,0.09);
-
-    border: 1px solid rgba(255,255,255,0.14);
-
-    color: white;
-
-    cursor: pointer;
-
-    text-align: center;
-
-    transition: 0.25s;
-
-    font-size: 15px;
-
-    font-weight: bold;
-}
-
-.occasion:hover {
-
-    transform: translateY(-3px);
-
-    background: rgba(255,255,255,0.18);
-}
-
-.occasion.selected {
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff4f9a,
-            #9b5cff
-        );
-
-    border-color: transparent;
-
-    box-shadow:
-        0 8px 25px rgba(180,80,255,0.4);
-}
-
-
-/* PARTICLES */
-
-.particle {
-
-    position: fixed;
-
-    bottom: -30px;
-
-    pointer-events: none;
-
-    animation:
-        floatUp linear forwards;
-
-    z-index: 1;
-
-    opacity: 0.85;
-}
-
-@keyframes floatUp {
-
-    from {
-
-        transform:
-            translateY(0)
-            rotate(0deg);
-
-        opacity: 0;
-
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    to {
-
-        transform:
-            translateY(-110vh)
-            rotate(360deg);
-
-        opacity: 0;
-
-    }
-}
-
-
-/* GIFT */
-
-.gift-area {
-    text-align: center;
-}
-
-.gift {
-
-    width: 160px;
-    height: 140px;
-
-    margin: 35px auto;
-
-    position: relative;
-
-    cursor: pointer;
-
-    animation:
-        giftFloat 2s infinite ease-in-out;
-}
-
-@keyframes giftFloat {
-
-    50% {
-
-        transform:
-            translateY(-10px)
-            rotate(2deg);
-
-    }
-}
-
-.gift-box {
-
-    position: absolute;
-
-    bottom: 0;
-
-    width: 160px;
-    height: 105px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff4f7b,
-            #c52d63
-        );
-
-    border-radius: 8px;
-
-    box-shadow:
-        0 15px 35px rgba(0,0,0,0.35);
-}
-
-.gift-box::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 67px;
-    top: 0;
-
-    width: 26px;
-    height: 105px;
-
-    background: #ffd35a;
-}
-
-.gift-lid {
-
-    position: absolute;
-
-    top: 8px;
-    left: -8px;
-
-    width: 176px;
-    height: 38px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff668d,
-            #d93269
-        );
-
-    border-radius: 8px;
-
-    z-index: 2;
-
-    transition: 0.8s;
-}
-
-.gift-lid::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 75px;
-    top: 0;
-
-    width: 26px;
-    height: 38px;
-
-    background: #ffd35a;
-}
-
-.gift.open .gift-lid {
+input:focus,
+textarea:focus{
 
     transform:
-        translateY(-110px)
-        rotate(-12deg);
-
-    opacity: 0;
-}
-
-
-/* SURPRISE */
-
-.surprise {
-
-    text-align: center;
-
-    animation:
-        appear 1.2s ease;
-}
-
-@keyframes appear {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(30px)
-            scale(0.94);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-}
-
-.big-title {
-
-    font-size: 39px;
-
-    font-weight: bold;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ffd45a,
-            #ff72bd,
-            #b47cff
-        );
-
-    -webkit-background-clip: text;
-
-    -webkit-text-fill-color: transparent;
-
-    animation:
-        titleGlow 2s infinite alternate;
-}
-
-@keyframes titleGlow {
-
-    from {
-
-        filter:
-            drop-shadow(
-                0 0 5px
-                rgba(255,100,200,0.3)
-            );
-
-    }
-
-    to {
-
-        filter:
-            drop-shadow(
-                0 0 18px
-                rgba(255,100,200,0.85)
-            );
-
-    }
-}
-
-.photo {
-
-    width: 100%;
-
-    max-height: 320px;
-
-    object-fit: cover;
-
-    border-radius: 20px;
-
-    margin-top: 20px;
+    translateY(-2px);
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,0.45);
+    0 0 0 3px
+    rgba(255,110,200,.25),
+    0 8px 25px
+    rgba(0,0,0,.18);
+}
+
+textarea{
+
+    min-height:140px;
+
+    resize:vertical;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button{
+
+    width:100%;
+
+    padding:16px;
+
+    margin-top:20px;
+
+    border:none;
+
+    border-radius:16px;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    background:
+    linear-gradient(
+        110deg,
+        #ff4fa3,
+        #9a65ff,
+        #45d9ff
+    );
+
+    background-size:200% 200%;
+
+    box-shadow:
+    0 12px 35px
+    rgba(180,80,255,.32);
+
+    transition:.3s;
 
     animation:
-        photoIn 1.5s ease;
+    buttonGradient 5s
+    infinite ease;
 }
 
-@keyframes photoIn {
+button:hover{
 
-    from {
+    transform:
+    translateY(-3px)
+    scale(1.01);
 
-        opacity: 0;
+    box-shadow:
+    0 18px 45px
+    rgba(180,80,255,.48);
+}
 
-        transform:
-            scale(0.7)
-            rotate(-5deg);
+button:active{
 
+    transform:
+    scale(.97);
+}
+
+@keyframes buttonGradient{
+
+    0%{
+        background-position:0% 50%;
     }
 
-    to {
+    50%{
+        background-position:100% 50%;
+    }
 
-        opacity: 1;
-
-        transform:
-            scale(1)
-            rotate(0);
-
+    100%{
+        background-position:0% 50%;
     }
 }
 
-.message {
 
-    white-space: pre-line;
+/* =========================
+   OCCASIONS
+========================= */
 
-    line-height: 1.9;
+.occasions{
 
-    color: #eee;
+    display:grid;
 
-    margin-top: 25px;
+    grid-template-columns:
+    repeat(2,1fr);
 
-    font-size: 17px;
+    gap:12px;
+
+    margin-top:20px;
+}
+
+.occasion{
+
+    position:relative;
+
+    padding:18px 8px;
+
+    border-radius:17px;
+
+    background:
+    rgba(255,255,255,.075);
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    text-align:center;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    color:
+    rgba(255,255,255,.9);
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.occasion::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:80px;
+    height:80px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.08);
+
+    left:-30px;
+    top:-40px;
+
+    transition:.4s;
+}
+
+.occasion:hover{
+
+    transform:
+    translateY(-4px);
+
+    background:
+    rgba(255,255,255,.13);
+
+    border-color:
+    rgba(255,255,255,.25);
+
+    box-shadow:
+    0 12px 30px
+    rgba(0,0,0,.2);
+}
+
+.occasion.selected{
+
+    transform:
+    translateY(-3px);
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,78,164,.9),
+        rgba(137,92,255,.9)
+    );
+
+    border-color:
+    transparent;
+
+    box-shadow:
+    0 12px 35px
+    rgba(190,80,255,.38);
+}
+
+
+/* =========================
+   MODE SELECTOR
+========================= */
+
+.mode{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:12px;
+
+    margin-top:12px;
+}
+
+.mode button{
+
+    margin-top:0;
+
+    padding:13px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    box-shadow:none;
+
+    border:
+    1px solid
+    rgba(255,255,255,.12);
+
+    animation:none;
+}
+
+.mode button.active{
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff4fa3,
+        #8d62ff
+    );
+
+    border-color:
+    transparent;
+
+    box-shadow:
+    0 10px 25px
+    rgba(170,80,255,.3);
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden{
+    display:none;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error{
+
+    text-align:center;
+
+    color:
+    #ff9da9;
+
+    font-weight:bold;
+
+    margin-top:12px;
+}
+
+
+/* =========================
+   GIFT
+========================= */
+
+.gift-area{
+
+    text-align:center;
+
+    padding:15px 0;
+}
+
+.gift{
+
+    width:170px;
+
+    height:150px;
+
+    margin:
+    40px auto;
+
+    position:relative;
+
+    cursor:pointer;
 
     animation:
-        appear 2s ease;
+    giftFloat 2.5s
+    infinite ease-in-out;
+}
+
+@keyframes giftFloat{
+
+    0%,
+    100%{
+        transform:
+        translateY(0)
+        rotate(0);
+    }
+
+    50%{
+        transform:
+        translateY(-12px)
+        rotate(2deg);
+    }
+}
+
+.gift-box{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:5px;
+
+    width:160px;
+
+    height:105px;
+
+    border-radius:10px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff4f8b,
+        #b82c68
+    );
+
+    box-shadow:
+    0 20px 40px
+    rgba(0,0,0,.35);
+}
+
+.gift-box::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:67px;
+
+    top:0;
+
+    width:26px;
+
+    height:105px;
+
+    background:
+    linear-gradient(
+        #ffe26b,
+        #ffbe3d
+    );
+}
+
+.gift-lid{
+
+    position:absolute;
+
+    top:5px;
+
+    left:-3px;
+
+    width:176px;
+
+    height:42px;
+
+    border-radius:9px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff719e,
+        #d93470
+    );
+
+    z-index:2;
+
+    transition:
+    1s cubic-bezier(.2,.8,.2,1);
+}
+
+.gift-lid::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:75px;
+
+    width:26px;
+
+    height:42px;
+
+    background:
+    linear-gradient(
+        #ffe26b,
+        #ffbe3d
+    );
+}
+
+.gift.open .gift-lid{
+
+    transform:
+    translateY(-115px)
+    rotate(-14deg);
+
+    opacity:0;
 }
 
 
-/* CONFETTI */
+/* =========================
+   SPECIAL OCCASION
+========================= */
 
-.confetti {
+.special{
 
-    position: fixed;
+    text-align:center;
 
-    width: 9px;
-    height: 14px;
+    padding:20px 0;
+}
 
-    top: -20px;
+.special-icon{
 
-    z-index: 20;
+    font-size:95px;
+
+    margin:25px 0;
+
+    display:inline-block;
 
     animation:
-        confettiFall 3s linear forwards;
+    specialFloat 2s
+    infinite ease-in-out;
 }
 
-@keyframes confettiFall {
+@keyframes specialFloat{
 
-    to {
-
+    0%,
+    100%{
         transform:
-            translateY(110vh)
-            rotate(720deg);
+        translateY(0)
+        scale(1);
+    }
 
+    50%{
+        transform:
+        translateY(-10px)
+        scale(1.06);
     }
 }
 
 
-/* FIREWORK */
+/* =========================
+   FINAL SURPRISE
+========================= */
 
-.firework {
+.surprise{
 
-    position: fixed;
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    z-index: 15;
+    text-align:center;
 
     animation:
-        explode 1.2s ease-out forwards;
+    surpriseIn 1.2s ease;
 }
 
-@keyframes explode {
+@keyframes surpriseIn{
 
-    from {
+    from{
+
+        opacity:0;
 
         transform:
-            translate(0,0)
-            scale(1);
-
-        opacity: 1;
+        translateY(35px)
+        scale(.9);
     }
 
-    to {
+    to{
+
+        opacity:1;
 
         transform:
-            translate(
-                var(--x),
-                var(--y)
-            )
-            scale(0.2);
-
-        opacity: 0;
+        translateY(0)
+        scale(1);
     }
 }
 
+.big-title{
 
-/* MOBILE */
+    font-size:
+    clamp(34px,9vw,52px);
 
-@media(max-width:500px) {
+    font-weight:900;
 
-    .card {
-        padding: 22px;
+    line-height:1.1;
+
+    margin-bottom:10px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #ffd45a,
+        #ff6fbd,
+        #ad7cff,
+        #65e7ff
+    );
+
+    background-size:
+    250% 100%;
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:
+    transparent;
+
+    animation:
+    rainbowTitle 4s
+    infinite linear;
+}
+
+@keyframes rainbowTitle{
+
+    to{
+        background-position:
+        250% 0;
+    }
+}
+
+.photo{
+
+    width:100%;
+
+    max-height:340px;
+
+    object-fit:cover;
+
+    border-radius:22px;
+
+    margin-top:22px;
+
+    box-shadow:
+    0 20px 60px
+    rgba(0,0,0,.4);
+
+    animation:
+    photoReveal 1.3s ease;
+}
+
+@keyframes photoReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        scale(.75)
+        rotate(-4deg);
     }
 
-    h1 {
-        font-size: 28px;
+    to{
+
+        opacity:1;
+
+        transform:
+        scale(1)
+        rotate(0);
+    }
+}
+
+.message{
+
+    white-space:pre-line;
+
+    line-height:1.95;
+
+    color:
+    rgba(255,255,255,.88);
+
+    margin-top:25px;
+
+    font-size:18px;
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti{
+
+    position:fixed;
+
+    width:9px;
+
+    height:15px;
+
+    top:-25px;
+
+    z-index:30;
+
+    pointer-events:none;
+
+    animation:
+    confettiFall 3.5s
+    linear forwards;
+}
+
+@keyframes confettiFall{
+
+    to{
+
+        transform:
+        translateY(110vh)
+        rotate(850deg);
+
+        opacity:.8;
+    }
+}
+
+
+/* =========================
+   FIREWORK
+========================= */
+
+.firework{
+
+    position:fixed;
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    z-index:30;
+
+    pointer-events:none;
+
+    animation:
+    explode 1.3s
+    ease-out forwards;
+}
+
+@keyframes explode{
+
+    from{
+
+        transform:
+        translate(0,0)
+        scale(1);
+
+        opacity:1;
     }
 
-    .big-title {
-        font-size: 33px;
+    to{
+
+        transform:
+        translate(
+            var(--x),
+            var(--y)
+        )
+        scale(.15);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   HEARTS
+========================= */
+
+.heart{
+
+    position:fixed;
+
+    bottom:-40px;
+
+    z-index:30;
+
+    pointer-events:none;
+
+    font-size:
+    20px;
+
+    animation:
+    heartFloat 5s
+    linear forwards;
+}
+
+@keyframes heartFloat{
+
+    to{
+
+        transform:
+        translateY(-115vh)
+        rotate(25deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+.star{
+
+    position:fixed;
+
+    color:#fff;
+
+    z-index:10;
+
+    pointer-events:none;
+
+    animation:
+    starFloat 4s
+    ease-in-out forwards;
+}
+
+@keyframes starFloat{
+
+    0%{
+        opacity:0;
+        transform:
+        scale(.3)
+        rotate(0);
     }
 
-    .occasions {
-        grid-template-columns: 1fr 1fr;
+    30%{
+        opacity:1;
     }
+
+    100%{
+        opacity:0;
+        transform:
+        scale(1.5)
+        rotate(180deg)
+        translateY(-80px);
+    }
+}
+
+
+/* =========================
+   AUTO VISUAL
+========================= */
+
+.auto-visual{
+
+    min-height:220px;
+
+    border-radius:25px;
+
+    margin-top:20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(255,80,170,.2),
+        rgba(90,100,255,.25)
+    );
+
+    border:
+    1px solid
+    rgba(255,255,255,.15);
+
+    box-shadow:
+    inset 0 0 60px
+    rgba(255,255,255,.04);
+}
+
+.auto-visual span{
+
+    font-size:100px;
+
+    filter:
+    drop-shadow(
+        0 15px 25px
+        rgba(0,0,0,.25)
+    );
+
+    animation:
+    specialFloat 2s
+    infinite ease-in-out;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
+
+    .card{
+
+        padding:22px;
+
+        margin:
+        15px auto;
+    }
+
+    .occasions{
+
+        gap:9px;
+    }
+
+    .occasion{
+
+        padding:
+        16px 5px;
+
+        font-size:14px;
+    }
+
 }
 
 </style>
-
 </head>
 
 
@@ -610,9 +1191,9 @@ button:active {
 <div class="card">
 
 
-<!-- ==========================
-CREATE PAGE
-========================== -->
+<!-- ==================================
+     CREATE PAGE
+================================== -->
 
 <div id="createPage">
 
@@ -622,9 +1203,35 @@ Create Your Surprise
 </h1>
 
 <p class="subtitle">
-Choose an occasion and create a little surprise for someone special.
+Choose an occasion and create something beautiful for someone special.
 </p>
 
+
+<!-- MODE -->
+
+<label>
+Who is this surprise for?
+</label>
+
+<div class="mode">
+
+<button
+id="oneMode"
+class="active"
+onclick="setMode('one')">
+One Person
+</button>
+
+<button
+id="multiMode"
+onclick="setMode('multi')">
+Multiple People
+</button>
+
+</div>
+
+
+<!-- OCCASION -->
 
 <label>
 What is this surprise for?
@@ -652,7 +1259,7 @@ New Year
 
 <div
 class="occasion"
-data-value="Exam / Good Luck"
+data-value="Exam"
 onclick="selectOccasion(this)">
 Exam / Good Luck
 </div>
@@ -701,7 +1308,11 @@ Custom
 </div>
 
 
-<div id="customBox" class="hidden">
+<!-- CUSTOM -->
+
+<div
+id="customBox"
+class="hidden">
 
 <label>
 Custom occasion
@@ -709,10 +1320,15 @@ Custom occasion
 
 <input
 id="customOccasion"
-placeholder="Example: Good Luck for your new job"
+placeholder="Example: New Job"
 >
 
 </div>
+
+
+<!-- ONE PERSON -->
+
+<div id="onePersonFields">
 
 
 <label>
@@ -721,7 +1337,7 @@ Name
 
 <input
 id="personName"
-placeholder="Who is this for?"
+placeholder="Their name"
 >
 
 
@@ -734,19 +1350,63 @@ id="nickname"
 placeholder="What do you call them?"
 >
 
+</div>
+
+
+<!-- MULTIPLE -->
+
+<div
+id="multipleFields"
+class="hidden">
+
 
 <label>
-Your message
+Passcodes
+</label>
+
+<textarea
+id="passcodes"
+placeholder="Enter passcodes, one per line
+
+Example:
+A123
+B456
+C789">
+</textarea>
+
+</div>
+
+
+<!-- WISH -->
+
+<label>
+Your wish
+<span
+style="
+font-weight:normal;
+opacity:.55;
+">
+(optional)
+</span>
 </label>
 
 <textarea
 id="message"
-placeholder="Write anything you want to say..."
+placeholder="Leave this empty and we'll create a wish automatically..."
 ></textarea>
 
 
+<!-- PHOTO -->
+
 <label>
-Choose a photo
+Your photo
+<span
+style="
+font-weight:normal;
+opacity:.55;
+">
+(optional)
+</span>
 </label>
 
 <input
@@ -756,7 +1416,18 @@ accept="image/*"
 >
 
 
-<button onclick="createSurprise()">
+<p
+class="subtitle"
+style="
+font-size:13px;
+margin-top:10px;
+">
+No photo? Don't worry. We'll use a beautiful occasion visual automatically.
+</p>
+
+
+<button
+onclick="createSurprise()">
 Create Surprise
 </button>
 
@@ -771,9 +1442,9 @@ class="error">
 
 
 
-<!-- ==========================
-NAME CHECK
-========================== -->
+<!-- ==================================
+     CHECK PAGE
+================================== -->
 
 <div
 id="checkPage"
@@ -783,7 +1454,6 @@ class="hidden">
 <h1>
 A Little Surprise
 </h1>
-
 
 <p
 id="checkSubtitle"
@@ -798,7 +1468,8 @@ placeholder="Enter your name"
 >
 
 
-<button onclick="checkPerson()">
+<button
+onclick="checkPerson()">
 Continue
 </button>
 
@@ -813,9 +1484,9 @@ class="error">
 
 
 
-<!-- ==========================
-GIFT PAGE
-========================== -->
+<!-- ==================================
+     BIRTHDAY GIFT
+================================== -->
 
 <div
 id="giftPage"
@@ -825,29 +1496,31 @@ class="hidden">
 <div class="gift-area">
 
 
-<h1
-id="giftTitle">
-Your Gift Is Waiting
+<h1>
+Your Birthday Surprise
 </h1>
 
-
-<p
-id="giftSubtitle"
-class="subtitle">
-Tap the gift to open it.
+<p class="subtitle">
+Something special is waiting inside.
 </p>
 
 
 <div
 class="gift"
 id="gift"
-onclick="openGift()">
-
+onclick="openBirthdayGift()">
 
 <div class="gift-lid"></div>
 
 <div class="gift-box"></div>
 
+</div>
+
+
+<p class="subtitle">
+Tap the gift
+</p>
+
 
 </div>
 
@@ -855,13 +1528,28 @@ onclick="openGift()">
 </div>
 
 
+
+<!-- ==================================
+     SPECIAL OCCASION
+================================== -->
+
+<div
+id="specialPage"
+class="hidden">
+
+
+<div
+id="specialContent">
+</div>
+
+
 </div>
 
 
 
-<!-- ==========================
-SURPRISE PAGE
-========================== -->
+<!-- ==================================
+     FINAL
+================================== -->
 
 <div
 id="surprisePage"
@@ -906,59 +1594,118 @@ class="message">
 <script>
 
 
-/* ==========================
-DATA
-========================== */
+/* ==================================
+   DATA
+================================== */
 
-let data = {
+let data={
 
-occasion: "",
+mode:"one",
 
-name: "",
+occasion:"",
 
-nickname: "",
+name:"",
 
-message: "",
+nickname:"",
 
-photo: ""
+message:"",
+
+photo:"",
+
+passcodes:[]
 
 };
 
 
 
-/* ==========================
-OCCASION
-========================== */
+/* ==================================
+   MODE
+================================== */
 
-function selectOccasion(element) {
+function setMode(mode){
+
+data.mode=mode;
+
+
+const one=
+document.getElementById("oneMode");
+
+const multi=
+document.getElementById("multiMode");
+
+
+if(mode==="one"){
+
+one.classList.add("active");
+
+multi.classList.remove("active");
 
 
 document
+.getElementById("onePersonFields")
+.classList
+.remove("hidden");
+
+
+document
+.getElementById("multipleFields")
+.classList
+.add("hidden");
+
+
+}else{
+
+multi.classList.add("active");
+
+one.classList.remove("active");
+
+
+document
+.getElementById("onePersonFields")
+.classList
+.add("hidden");
+
+
+document
+.getElementById("multipleFields")
+.classList
+.remove("hidden");
+
+}
+
+}
+
+
+
+/* ==================================
+   OCCASION
+================================== */
+
+function selectOccasion(element){
+
+document
 .querySelectorAll(".occasion")
-.forEach(function(item) {
-
-item.classList.remove("selected");
-
-});
+.forEach(
+item =>
+item.classList.remove("selected")
+);
 
 
 element.classList.add("selected");
 
 
-data.occasion =
+data.occasion=
 element.dataset.value;
 
 
-if(data.occasion === "Custom") {
+if(data.occasion==="Custom"){
 
 document
 .getElementById("customBox")
 .classList
 .remove("hidden");
 
-}
-
-else {
+}else{
 
 document
 .getElementById("customBox")
@@ -971,21 +1718,20 @@ document
 
 
 
-/* ==========================
-CREATE
-========================== */
+/* ==================================
+   CREATE
+================================== */
 
-function createSurprise() {
+function createSurprise(){
 
-
-const error =
+const error=
 document
 .getElementById("createError");
 
 
-if(!data.occasion) {
+if(!data.occasion){
 
-error.innerText =
+error.innerText=
 "Please choose an occasion.";
 
 return;
@@ -993,120 +1739,165 @@ return;
 }
 
 
-if(data.occasion === "Custom") {
+/* CUSTOM */
 
-const custom =
+if(data.occasion==="Custom"){
+
+const custom=
 document
 .getElementById("customOccasion")
 .value
 .trim();
 
-if(!custom) {
 
-error.innerText =
-"Please enter your custom occasion.";
+if(!custom){
+
+error.innerText=
+"Please enter your occasion.";
 
 return;
 
 }
 
-data.occasion =
-custom;
+data.occasion=custom;
 
 }
 
 
-const name =
+/* ONE */
+
+if(data.mode==="one"){
+
+const name=
 document
 .getElementById("personName")
 .value
 .trim();
 
 
-const nickname =
+const nickname=
 document
 .getElementById("nickname")
 .value
 .trim();
 
 
-const message =
-document
-.getElementById("message")
-.value
-.trim();
+if(!name || !nickname){
 
-
-const photo =
-document
-.getElementById("photo")
-.files[0];
-
-
-if(!name || !nickname || !message) {
-
-error.innerText =
-"Please fill in the name, nickname and message.";
+error.innerText=
+"Please enter the name and nickname.";
 
 return;
 
 }
 
 
-data.name =
-name;
+data.name=name;
 
-data.nickname =
-nickname;
+data.nickname=nickname;
 
-data.message =
-message;
+}
 
 
-if(photo) {
+/* MULTIPLE */
+
+else{
+
+const raw=
+document
+.getElementById("passcodes")
+.value
+.trim();
 
 
-const reader =
+if(!raw){
+
+error.innerText=
+"Please enter at least one passcode.";
+
+return;
+
+}
+
+
+data.passcodes=
+raw
+.split("\n")
+.map(x=>x.trim())
+.filter(Boolean);
+
+}
+
+
+/* MESSAGE */
+
+data.message=
+document
+.getElementById("message")
+.value
+.trim();
+
+
+if(!data.message){
+
+data.message=
+getAutoWish();
+
+}
+
+
+/* PHOTO */
+
+const photo=
+document
+.getElementById("photo")
+.files[0];
+
+
+if(photo){
+
+const reader=
 new FileReader();
 
 
-reader.onload =
-function(e) {
+reader.onload=
+function(e){
 
-data.photo =
+data.photo=
 e.target.result;
 
-showCheck();
+goNext();
 
 };
 
 
 reader.readAsDataURL(photo);
 
-}
+}else{
 
-else {
+data.photo="";
 
-showCheck();
-
-}
+goNext();
 
 }
 
+}
 
 
-/* ==========================
-CHECK PAGE
-========================== */
 
-function showCheck() {
+/* ==================================
+   NEXT
+================================== */
 
+function goNext(){
 
 document
 .getElementById("createPage")
 .classList
 .add("hidden");
 
+
+if(data.mode==="one"){
 
 document
 .getElementById("checkPage")
@@ -1116,54 +1907,89 @@ document
 
 document
 .getElementById("checkSubtitle")
-.innerText =
-"Someone made a special " +
-data.occasion.toLowerCase() +
+.innerText=
+"Someone made a special "
++
+data.occasion.toLowerCase()
++
 " surprise for you.";
+
+}else{
+
+/*
+   Temporary demo:
+   In the database version,
+   passcode validation will happen
+   here.
+*/
+
+document
+.getElementById("checkPage")
+.classList
+.remove("hidden");
+
+
+document
+.getElementById("checkName")
+.placeholder=
+"Enter your passcode";
+
+
+document
+.getElementById("checkSubtitle")
+.innerText=
+"Enter your secret passcode to open the surprise.";
+
+}
 
 }
 
 
 
-/* ==========================
-CHECK NAME
-========================== */
+/* ==================================
+   CHECK
+================================== */
 
-function checkPerson() {
+function checkPerson(){
 
-
-const entered =
+const entered=
 document
 .getElementById("checkName")
 .value
-.trim()
-.toLowerCase();
+.trim();
 
 
-const correct =
-data.name
-.toLowerCase();
-
-
-const nickname =
-data.nickname
-.toLowerCase();
-
-
-const error =
+const error=
 document
 .getElementById("checkError");
 
 
-if(
-entered !== correct &&
-entered !== nickname
-) {
+if(data.mode==="one"){
 
-error.innerText =
-"No no... This is not for you.";
+if(
+entered.toLowerCase() !==
+data.name.toLowerCase()
+){
+
+error.innerText=
+"That doesn't seem to be the right name.";
 
 return;
+
+}
+
+}else{
+
+if(
+!data.passcodes.includes(entered)
+){
+
+error.innerText=
+"That passcode isn't correct.";
+
+return;
+
+}
 
 }
 
@@ -1174,76 +2000,19 @@ document
 .add("hidden");
 
 
+if(
+data.mode==="one" &&
+data.occasion==="Birthday"
+){
+
 document
 .getElementById("giftPage")
 .classList
 .remove("hidden");
 
+}else{
 
-setGiftText();
-
-}
-
-
-
-/* ==========================
-GIFT TEXT
-========================== */
-
-function setGiftText() {
-
-
-const title =
-document
-.getElementById("giftTitle");
-
-
-const subtitle =
-document
-.getElementById("giftSubtitle");
-
-
-if(data.occasion === "Birthday") {
-
-title.innerText =
-"Your Birthday Gift Is Waiting";
-
-subtitle.innerText =
-"Tap the gift to open it.";
-
-}
-
-else if(
-data.occasion === "New Year"
-) {
-
-title.innerText =
-"Your New Year Surprise Is Waiting";
-
-subtitle.innerText =
-"Tap the gift to see your surprise.";
-
-}
-
-else if(
-data.occasion === "Exam / Good Luck"
-) {
-
-title.innerText =
-"Your Good Luck Surprise Is Waiting";
-
-subtitle.innerText =
-"Tap the gift before you begin.";
-
-}
-
-else {
-
-title.innerText =
-"Something Special Is Waiting";
-
-subtitle.innerText =
-"Tap the gift to open your surprise.";
+showSpecial();
 
 }
 
@@ -1251,12 +2020,11 @@ subtitle.innerText =
 
 
 
-/* ==========================
-OPEN GIFT
-========================== */
+/* ==================================
+   BIRTHDAY
+================================== */
 
-function openGift() {
-
+function openBirthdayGift(){
 
 document
 .getElementById("gift")
@@ -1264,8 +2032,9 @@ document
 .add("open");
 
 
-setTimeout(function() {
+setTimeout(
 
+function(){
 
 document
 .getElementById("giftPage")
@@ -1273,150 +2042,310 @@ document
 .add("hidden");
 
 
+showFinal();
+
+
+launchConfetti();
+
+launchStars();
+
+},
+
+900
+);
+
+}
+
+
+
+/* ==================================
+   SPECIAL
+================================== */
+
+function showSpecial(){
+
+document
+.getElementById("specialPage")
+.classList
+.remove("hidden");
+
+
+const box=
+document
+.getElementById("specialContent");
+
+
+let icon="✦";
+
+let title="Something Special";
+
+let text=
+"A little surprise made just for you.";
+
+
+if(data.occasion==="New Year"){
+
+icon="✦";
+
+title=
+"New Year Surprise";
+
+text=
+"A new year is waiting for you.";
+
+setTimeout(
+launchFireworks,
+250
+);
+
+}
+
+
+else if(data.occasion==="Exam"){
+
+icon="★";
+
+title=
+"All The Best!";
+
+text=
+"You've got this. Believe in yourself.";
+
+}
+
+
+else if(data.occasion==="Anniversary"){
+
+icon="♥";
+
+title=
+"A Little Love";
+
+text=
+"Something beautiful was made for you.";
+
+setTimeout(
+launchHearts,
+300
+);
+
+}
+
+
+else if(data.occasion==="Congratulations"){
+
+icon="✦";
+
+title=
+"Congratulations!";
+
+text=
+"Today is a day worth celebrating.";
+
+setTimeout(
+launchConfetti,
+300
+);
+
+}
+
+
+else if(data.occasion==="Thank You"){
+
+icon="♥";
+
+title=
+"Thank You";
+
+text=
+"This little surprise is just for you.";
+
+setTimeout(
+launchHearts,
+300
+);
+
+}
+
+
+else if(data.occasion==="Just For You"){
+
+icon="✦";
+
+title=
+"Just For You";
+
+text=
+"Because you deserve a little magic.";
+
+setTimeout(
+launchStars,
+300
+);
+
+}
+
+
+box.innerHTML=`
+
+<div class="special">
+
+<h1>
+${title}
+</h1>
+
+<div class="special-icon">
+${icon}
+</div>
+
+<p class="subtitle">
+${text}
+</p>
+
+<button onclick="openSpecial()">
+Open Your Surprise
+</button>
+
+</div>
+
+`;
+
+}
+
+
+
+/* ==================================
+   OPEN SPECIAL
+================================== */
+
+function openSpecial(){
+
+document
+.getElementById("specialPage")
+.classList
+.add("hidden");
+
+
+showFinal();
+
+
+if(data.occasion==="New Year"){
+
+launchFireworks();
+
+}else if(
+data.occasion==="Anniversary" ||
+data.occasion==="Thank You"
+){
+
+launchHearts();
+
+}else{
+
+launchConfetti();
+
+launchStars();
+
+}
+
+}
+
+
+
+/* ==================================
+   FINAL
+================================== */
+
+function showFinal(){
+
 document
 .getElementById("surprisePage")
 .classList
 .remove("hidden");
 
 
-showSurprise();
+document
+.getElementById("bigTitle")
+.innerText=
+getTitle();
 
 
-},900);
+if(data.mode==="one"){
+
+document
+.getElementById("surpriseTitle")
+.innerText=
+"Dear "+data.nickname;
+
+}else{
+
+document
+.getElementById("surpriseTitle")
+.innerText=
+"With Love";
 
 }
-
-
-
-/* ==========================
-SHOW SURPRISE
-========================== */
-
-function showSurprise() {
-
-
-const bigTitle =
-document
-.getElementById("bigTitle");
-
-
-const title =
-document
-.getElementById("surpriseTitle");
-
-
-bigTitle.innerText =
-getMainTitle();
-
-
-title.innerText =
-"Dear " +
-data.nickname;
-
-
-document
-.getElementById("surpriseMessage")
-.innerText =
-data.message;
 
 
 /* PHOTO */
 
-if(data.photo) {
+const container=
+document
+.getElementById("photoContainer");
 
 
-const img =
+container.innerHTML="";
+
+
+if(data.photo){
+
+const img=
 document.createElement("img");
 
-
-img.src =
+img.src=
 data.photo;
 
-
-img.className =
+img.className=
 "photo";
 
+container.appendChild(img);
 
-document
-.getElementById("photoContainer")
-.appendChild(img);
+}else{
 
-}
-
-
-/* EFFECT */
-
-if(data.occasion === "New Year") {
-
-launchFireworks();
-
-}
-
-else {
-
-launchConfetti();
+container.innerHTML=
+getAutoVisual();
 
 }
 
 }
 
 
+/* ==================================
+   TITLE
+================================== */
 
-/* ==========================
-MAIN TITLE
-========================== */
+function getTitle(){
 
-function getMainTitle() {
-
-
-if(data.occasion === "Birthday") {
-
+if(data.occasion==="Birthday")
 return "Happy Birthday!";
 
-}
-
-
-if(data.occasion === "New Year") {
-
+if(data.occasion==="New Year")
 return "Happy New Year!";
 
-}
-
-
-if(data.occasion === "Exam / Good Luck") {
-
+if(data.occasion==="Exam")
 return "All The Best!";
 
-}
-
-
-if(data.occasion === "Anniversary") {
-
+if(data.occasion==="Anniversary")
 return "Happy Anniversary!";
 
-}
-
-
-if(data.occasion === "Congratulations") {
-
+if(data.occasion==="Congratulations")
 return "Congratulations!";
 
-}
-
-
-if(data.occasion === "Thank You") {
-
+if(data.occasion==="Thank You")
 return "Thank You!";
 
-}
-
-
-if(data.occasion === "Just For You") {
-
+if(data.occasion==="Just For You")
 return "Just For You!";
-
-}
-
 
 return data.occasion;
 
@@ -1424,62 +2353,178 @@ return data.occasion;
 
 
 
-/* ==========================
-CONFETTI
-========================== */
+/* ==================================
+   AUTO WISH
+================================== */
 
-function launchConfetti() {
+function getAutoWish(){
 
+if(data.occasion==="Birthday"){
 
-for(let i = 0; i < 100; i++) {
-
-createConfetti();
+return `
+Wishing you the happiest birthday filled with beautiful moments, genuine smiles and everything that makes you happy. May this new year of your life be full of wonderful memories.
+`;
 
 }
 
+
+if(data.occasion==="New Year"){
+
+return `
+May this new year bring you new beginnings, beautiful memories, endless happiness and many reasons to smile. Here's to a wonderful year ahead!
+`;
+
 }
 
 
-function createConfetti() {
+if(data.occasion==="Exam"){
+
+return `
+You've worked hard for this. Believe in yourself, stay calm and give it your best. No matter what happens, be proud of how far you've come. Good luck!
+`;
+
+}
 
 
-const piece =
+if(data.occasion==="Anniversary"){
+
+return `
+May your beautiful journey together continue to be filled with love, laughter, unforgettable moments and countless reasons to smile.
+`;
+
+}
+
+
+if(data.occasion==="Congratulations"){
+
+return `
+You did it! This moment deserves to be celebrated. Keep believing in yourself and keep reaching for even greater things.
+`;
+
+}
+
+
+if(data.occasion==="Thank You"){
+
+return `
+Sometimes a simple thank you isn't enough. Just know that you are appreciated more than you probably realize.
+`;
+
+}
+
+
+if(data.occasion==="Just For You"){
+
+return `
+This little surprise is just a reminder that you are special, appreciated and deserving of all the beautiful things life has to offer.
+`;
+
+}
+
+
+return `
+Wishing you lots of happiness, beautiful moments and wonderful memories.
+`;
+
+}
+
+
+
+/* ==================================
+   AUTO VISUAL
+================================== */
+
+function getAutoVisual(){
+
+let icon="✦";
+
+
+if(data.occasion==="Birthday")
+icon="🎂";
+
+
+else if(data.occasion==="New Year")
+icon="✦";
+
+
+else if(data.occasion==="Exam")
+icon="★";
+
+
+else if(data.occasion==="Anniversary")
+icon="♥";
+
+
+else if(data.occasion==="Congratulations")
+icon="✦";
+
+
+else if(data.occasion==="Thank You")
+icon="♥";
+
+
+return `
+
+<div class="auto-visual">
+
+<span>
+${icon}
+</span>
+
+</div>
+
+`;
+
+}
+
+
+
+/* ==================================
+   CONFETTI
+================================== */
+
+function launchConfetti(){
+
+for(
+let i=0;
+i<100;
+i++
+){
+
+const piece=
 document.createElement("div");
 
-
-piece.className =
+piece.className=
 "confetti";
 
 
-piece.style.left =
-Math.random()*100 +
+piece.style.left=
+Math.random()*100+
 "vw";
 
 
-piece.style.animationDelay =
-Math.random()*1.5 +
+piece.style.animationDelay=
+Math.random()*1.2+
 "s";
 
 
-const colors = [
+const colors=[
 
-"#ff4f9a",
-
+"#ff4fa3",
 "#ffd45a",
-
-"#72d9ff",
-
-"#9d72ff",
-
-"#ffffff"
+"#72e9ff",
+"#9b6cff",
+"#ffffff",
+"#ff8ac7"
 
 ];
 
 
-piece.style.background =
+piece.style.background=
 colors[
 Math.floor(
-Math.random()*colors.length
+Math.random()*
+colors.length
 )
 ];
 
@@ -1488,104 +2533,104 @@ document.body
 .appendChild(piece);
 
 
-setTimeout(function() {
+setTimeout(
+()=>piece.remove(),
+5000
+);
 
-piece.remove();
-
-},4500);
+}
 
 }
 
 
 
-/* ==========================
-FIREWORKS
-========================== */
+/* ==================================
+   FIREWORKS
+================================== */
 
-function launchFireworks() {
+function launchFireworks(){
 
+for(
+let burst=0;
+burst<8;
+burst++
+){
 
-for(let burst = 0; burst < 5; burst++) {
+setTimeout(
+function(){
 
+const centerX=
+15+
+Math.random()*70;
 
-setTimeout(function() {
-
-
-const centerX =
-20 +
-Math.random()*60;
-
-
-const centerY =
-20 +
-Math.random()*35;
-
-
-for(let i = 0; i < 25; i++) {
+const centerY=
+15+
+Math.random()*45;
 
 
-const fire =
+for(
+let i=0;
+i<28;
+i++
+){
+
+const fire=
 document.createElement("div");
 
-
-fire.className =
+fire.className=
 "firework";
 
 
-fire.style.left =
-centerX + "vw";
+fire.style.left=
+centerX+"vw";
 
 
-fire.style.top =
-centerY + "vh";
+fire.style.top=
+centerY+"vh";
 
 
-const angle =
-Math.random() *
-Math.PI *
-2;
+const angle=
+Math.random()*
+Math.PI*2;
 
 
-const distance =
-60 +
-Math.random()*100;
+const distance=
+60+
+Math.random()*130;
 
 
 fire.style.setProperty(
 "--x",
-Math.cos(angle) *
-distance +
+Math.cos(angle)*
+distance+
 "px"
 );
 
 
 fire.style.setProperty(
 "--y",
-Math.sin(angle) *
-distance +
+Math.sin(angle)*
+distance+
 "px"
 );
 
 
-const colors = [
+const colors=[
 
-"#ff4f9a",
-
+"#ff4fa3",
 "#ffd45a",
-
-"#72d9ff",
-
-"#9d72ff",
-
+"#72e9ff",
+"#9b6cff",
 "#ffffff"
 
 ];
 
 
-fire.style.background =
+fire.style.background=
 colors[
 Math.floor(
-Math.random()*colors.length
+Math.random()*
+colors.length
 )
 ];
 
@@ -1594,49 +2639,164 @@ document.body
 .appendChild(fire);
 
 
-setTimeout(function() {
+setTimeout(
+()=>fire.remove(),
+1400
+);
 
-fire.remove();
+}
 
-},1300);
+},
+burst*550
+);
+
+}
 
 }
 
 
-}, burst * 700);
 
-}
+/* ==================================
+   HEARTS
+================================== */
 
-}
+function launchHearts(){
 
+for(
+let i=0;
+i<45;
+i++
+){
 
+setTimeout(
+function(){
 
-/* ==========================
-FLOATING PARTICLES
-========================== */
-
-function createParticle() {
-
-
-const particle =
+const heart=
 document.createElement("div");
 
+heart.className=
+"heart";
 
-particle.className =
+heart.innerText=
+"♥";
+
+
+heart.style.left=
+Math.random()*100+
+"vw";
+
+
+heart.style.color=
+[
+"#ff4fa3",
+"#ff83bb",
+"#ffffff"
+][
+Math.floor(
+Math.random()*3
+)
+];
+
+
+document.body
+.appendChild(heart);
+
+
+setTimeout(
+()=>heart.remove(),
+5200
+);
+
+},
+i*90
+);
+
+}
+
+}
+
+
+
+/* ==================================
+   STARS
+================================== */
+
+function launchStars(){
+
+for(
+let i=0;
+i<45;
+i++
+){
+
+setTimeout(
+function(){
+
+const star=
+document.createElement("div");
+
+star.className=
+"star";
+
+star.innerText=
+"✦";
+
+
+star.style.left=
+Math.random()*100+
+"vw";
+
+
+star.style.top=
+20+
+Math.random()*65+
+"vh";
+
+
+star.style.fontSize=
+10+
+Math.random()*25+
+"px";
+
+
+document.body
+.appendChild(star);
+
+
+setTimeout(
+()=>star.remove(),
+4200
+);
+
+},
+i*90
+);
+
+}
+
+}
+
+
+
+/* ==================================
+   BACKGROUND PARTICLES
+================================== */
+
+function createParticle(){
+
+const particle=
+document.createElement("div");
+
+particle.className=
 "particle";
 
 
-particle.innerText =
+particle.innerText=
 [
-
-"♥",
-
 "✦",
-
 "♡",
-
-"•"
-
+"•",
+"⋆"
 ][
 Math.floor(
 Math.random()*4
@@ -1644,24 +2804,20 @@ Math.random()*4
 ];
 
 
-particle.style.left =
-Math.random()*100 +
+particle.style.left=
+Math.random()*100+
 "vw";
 
 
-particle.style.fontSize =
-(
-12 +
-Math.random()*22
-) +
+particle.style.fontSize=
+12+
+Math.random()*20+
 "px";
 
 
-particle.style.animationDuration =
-(
-5 +
-Math.random()*5
-) +
+particle.style.animationDuration=
+5+
+Math.random()*5+
 "s";
 
 
@@ -1669,23 +2825,21 @@ document.body
 .appendChild(particle);
 
 
-setTimeout(function() {
-
-particle.remove();
-
-},10000);
+setTimeout(
+()=>particle.remove(),
+10000
+);
 
 }
 
 
 setInterval(
 createParticle,
-700
+650
 );
 
 
 </script>
-
 
 </body>
 </html>
